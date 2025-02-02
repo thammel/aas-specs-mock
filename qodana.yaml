@@ -1,11 +1,8 @@
 version: 1.0
 profile:
   path: .qodana/asciidoc-inspection.
-inspections:
-  SpellCheckingInspection:
-    options:
-      dictionaries:
-        - .qodana/dictionary.txt
+dictionary:
+  path: .qodana/dictionary.dic
 exclude:
   - name: All
     paths:
