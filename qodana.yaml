@@ -1,6 +1,6 @@
 version: 1.0
 profile:
-  path: asciidoc-inspection.xml
+  path: documentation/IDTA-01001/asciidoc-inspection.xml
 exclude:
   - name: All
     paths:
