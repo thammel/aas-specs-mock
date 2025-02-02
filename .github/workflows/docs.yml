@@ -11,27 +11,45 @@ on:
       - 'docs.yml'
       - 'qodana.yaml'
 
-jobs:
-  qodana:
-    runs-on: ubuntu-latest
-    permission:
-      contents: write
-      pull-requests: write
-      checks: write
-    steps:
-      - name: Checkout code
+  permissions:
+    security-events: write
+
+steps:
+      - name: Fetch Sources
+        if: github.event_name != 'pull_request'
+        uses: actions/checkout@v4
+
+      - name: Fetch Sources
+        if: github.event_name == 'pull_request'
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
+          fetch-depth: ${{ github.event.pull_request.commits }}
 
-      - name: Run Qodana
-        uses: JetBrains/qodana-action@v2023.3
-        with:
-          args: --save-report
+      - name: Download AsciiDoc plugin for AsciiDoc checks
+        run: |
+          curl -L -o asciidoctor-intellij-plugin.zip https://github.com/asciidoctor/asciidoctor-intellij-plugin/releases/download/0.41.14/asciidoctor-intellij-plugin-0.41.14.zip
+          unzip asciidoctor-intellij-plugin.zip
 
-      - name: Upload Qodana Report as Artifact
-        uses: actions/upload-artifact@v4
+      - name: Get two more commits so Qodana we can identify the changes
+        if: github.event_name == 'pull_request'
+        run: git fetch --deepen=2
+
+      - name: 'Qodana for Docs'
+        uses: JetBrains/qodana-action@v2024.3.4
         with:
-          name: qodana-report
-          path: qodana/report
+          upload-result: true
+          args: >
+            --linter,jetbrains/qodana-jvm-community:2024.3,
+            -v,${{ github.workspace }}/asciidoctor-intellij-plugin:/opt/idea/plugins/asciidoctor-intellij-plugin,
+            --baseline,doc/qodana-baseline.sarif.json
+
+      # https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/uploading-a-sarif-file-to-github#example-workflow-that-runs-the-eslint-analysis-tool
+      - name: Upload SARIF report to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/qodana/results/report
