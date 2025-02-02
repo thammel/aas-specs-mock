@@ -89,4 +89,3 @@ SPDX-License-Identifier: CC-BY-4.0
 
 
 * xref:bibliography.adoc[Bibliography]
-
