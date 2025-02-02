@@ -23,5 +23,8 @@
       <option name="processComments" value="true" />
     </inspection_tool>
     <inspection_tool class="Style" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="Type" enabled="true" level="WARNING">
+        <option name="dictionary" value=".qodana/dictionary.txt" />
+    </inspection_tool>
   </profile>
 </component>
