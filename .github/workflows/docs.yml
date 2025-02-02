@@ -11,14 +11,13 @@ on:
       - 'docs.yml'
       - 'qodana.yaml'
 
-  permission:
-    contents: write
-    pull-requests: write
-    checks: write
-
 jobs:
   qodana:
     runs-on: ubuntu-latest
+    permission:
+      contents: write
+      pull-requests: write
+      checks: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
