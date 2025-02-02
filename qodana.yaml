@@ -1,6 +1,13 @@
-version: 1.0
+version: "1.0"
 profile:
-  path: .qodana/asciidoc-inspection.xml
+  name: empty
+include:
+  - name: GrazieInspection
+  - name: IdentifierGrammar
+  - name: LanguageDetectionInspection
+  - name: SpellCheckingInspection
+plugins:
+  - id: com.intellij.grazie.pro
 exclude:
   - name: All
     paths:
