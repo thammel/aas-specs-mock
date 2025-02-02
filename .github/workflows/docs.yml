@@ -1,0 +1,38 @@
+name: Qodana Documentation validation
+on:
+  push:
+    paths:
+      - 'documentation/**'
+      - 'docs.yml'
+      - 'qodana.yaml'
+  pull_request:
+    paths:
+      - 'documentation/**'
+      - 'docs.yml'
+      - 'qodana.yaml'
+
+  permission:
+    contents: write
+    pull-requests: write
+    checks: write
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Run Qodana
+        uses: JetBrains/qodana-action@v2023.3
+        with:
+          args: --save-report
+
+      - name: Upload Qodana Report as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qodana-report
+          path: qodana/report
