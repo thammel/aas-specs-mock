@@ -1,6 +1,7 @@
 version: 1.0
 profile:
-  path: documentation/IDTA-01001/asciidoc-inspection.xml
+  name: qodana.recommended
+  #path: documentation/IDTA-01001/asciidoc-inspection.xml
 exclude:
   - name: All
     paths:
