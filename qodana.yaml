@@ -1,11 +1,11 @@
 version: 1.0
 profile:
-  name: qodana.recommended
-  #path: documentation/IDTA-01001/asciidoc-inspection.xml
+  path: .qodana/asciidoc-inspection.xml
 exclude:
   - name: All
     paths:
       - .github
+      - .qodana
       - schemas
       - CONTRIBUTING.md
       - LICENSE.txt
