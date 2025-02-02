@@ -1,8 +1,6 @@
 version: 1.0
 profile:
-  path: .qodana/asciidoc-inspection.
-dictionary:
-  path: .qodana/dictionary.dic
+  name: qodana.recommended
 exclude:
   - name: All
     paths:
