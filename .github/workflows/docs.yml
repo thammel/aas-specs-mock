@@ -11,10 +11,14 @@ on:
       - 'docs.yml'
       - 'qodana.yaml'
 
-  permissions:
-    security-events: write
+jobs:
+  qodana-docs:
+    name: Qodana Documentation validation
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
 
-steps:
       - name: Fetch Sources
         if: github.event_name != 'pull_request'
         uses: actions/checkout@v4
