@@ -13,9 +13,3 @@ exclude:
       - documentation/IDTA-01001/modules/ROOT/images
       - documentation/IDTA-01001/modules/ROOT/partials
       - qodana.yaml
-  - name: Typo
-    paths:
-      - documentation/IDTA-01001/modules/ROOT/pages/changelog.adoc
-failureConditions:
-  severityThresholds:
-    any: 100
