@@ -13,7 +13,7 @@ exclude:
       - documentation/IDTA-01001/modules/ROOT/images
       - documentation/IDTA-01001/modules/ROOT/partials
       - qodana.yaml
-  - name: Identifiables
+  - name: Typo
     paths:
       - documentation/IDTA-01001/modules/ROOT/pages/changelog.adoc
 failureConditions:
