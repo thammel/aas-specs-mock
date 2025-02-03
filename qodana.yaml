@@ -13,3 +13,6 @@ exclude:
       - documentation/IDTA-01001/modules/ROOT/images
       - documentation/IDTA-01001/modules/ROOT/partials
       - qodana.yaml
+failureConditions:
+  severityThresholds:
+    low: 100
