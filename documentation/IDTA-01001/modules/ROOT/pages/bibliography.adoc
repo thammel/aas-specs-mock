@@ -228,5 +228,4 @@ Oct. 2020, Plattform Industrie 4.0 [Online] Available: https://www.plattform-i40
 [51] "Repository of the Industrial Digital Twin Association (IDTA)".
 Industrial Digital Twin Association. https://github.com/admin-shell-io
 
-waras
 // bib52 see [41]
