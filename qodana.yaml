@@ -15,4 +15,4 @@ exclude:
       - qodana.yaml
 failureConditions:
   severityThresholds:
-    low: 100
+    any: 100
